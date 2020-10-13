@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.fernando.curso.boot.DemoMvcApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.505 s - in com.fernando.curso.boot.DemoMvcApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.796 s - in com.fernando.curso.boot.DemoMvcApplicationTests

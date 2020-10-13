@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+    <head> <meta charset="UTF-8"/></meta></head>
+
+    <body>
+        <section class="layout-content" layout:fragment="corpo">
+            <nav class="navbar navbar-expand-md bg-light">
+                <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                    <ul class="navbar-nav mr-auto">
+                        <li>
+                            <i class="oi oi-caret-right"></i>
+                            <span>Cadastrar Eventos</span>
+                        </li>
+                    </ul>
+                </div>
+                <a class="btn btn-primary btn-md" th:href="@{/eventos/listar}" role="button">
+                <span class="oi oi-spreadsheet" title="Cadastro" aria-hidden="true"> </span>
+            <span>Listar Eventos</span>
+            </a>
+            </nav>
+
+            <div class="container" id="cadastro">
+
+                <div th:replace="fragments/alert"></div>
+
+                <form th:action="${evento.id == null} ? @{/eventos/salvar} : @{/eventos/editar}" 
+                      th:object="${evento}" method="POST">
+                <div th:replace="fragments/validacao  :: validacao"></div>
+                  
+                 <div class="form-row">
+	                    <div class="form-group col-md-6">
+	                        <label for="nome">Nome do Evento</label>
+	                        <input type="text" class="form-control" id="nome" placeholder="Nome"
+	                               autofocus="autofocus" th:field="*{nome}" 
+	                               th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid'" />
+	                        <div class="invalid-feedback">
+								<span th:errors="*{nome}"></span>
+	                        </div>
+	                    </div>
+	                   
+	                </div>
+	                <div class="form-row">
+	                    <div class="form-group col-md-6">
+	                        <label for="dataInicio">Data Inicio</label>
+	                        <input type="date" class="form-control" id="dataInicio" th:field="*{dataInicio}"
+	                        	   th:classappend="${#fields.hasErrors('dataInicio')} ? 'is-invalid'" />
+	                        <div class="invalid-feedback">
+								<span th:errors="*{dataInicio}"></span>
+	                        </div>
+	                    </div>
+	                    <div class="form-group col-md-6">
+	                        <label for="dataFim">Data Fim</label>
+	                        <input type="date" class="form-control" id="dataFim" th:field="*{dataFim}"
+	                        	   th:classappend="${#fields.hasErrors('dataFim')} ? 'is-invalid'" />
+	                        <div class="invalid-feedback">
+								<span th:errors="*{dataFim}"></span>
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="form-row">
+	                    <div class="form-group col-md-6">
+	                        <label for="funcionario">Funcionario</label>
+	                        <select id="funcionario" class="form-control" th:field="*{funcionario}"
+	                                th:classappend="${#fields.hasErrors('funcionario')} ? 'is-invalid'">
+	                            <option value="">Selecione...</option>
+	                            <option th:each="f : ${funcionarios}" th:value="${f.id}" th:text="${f.funcionarios}"></option>
+	                        </select>
+	                        <div class="invalid-feedback">
+								<span th:errors="*{funcionario}"></span>
+	                        </div>
+	                    </div>
+	                </div>
+	         
+	                <input type="hidden" id="id" th:field="*{id}"/>
+					<input type="hidden" id="staus" th:field="*{status}"/>
+	                <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+	            </form>
+	        </div>
+	    </section>
+</body>
+</html>		
